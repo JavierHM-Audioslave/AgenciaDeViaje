@@ -13,6 +13,9 @@ app.set("view engine", "pug");
 app.use( (req, res, next) => {
     const year = new Date();
     res.locals.anioActual = year.getFullYear();
+
+    res.locals.nombreSitio = "Agencia de viajes";
+
     return next();  // El return está demás pero a veces el next queda trabado y de esta forma no se traba. //
 } )
 
