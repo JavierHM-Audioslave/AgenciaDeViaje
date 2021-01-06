@@ -9,6 +9,13 @@ const port = process.env.PORT || 4000;
 // Habilitar pug //
 app.set("view engine", "pug");
 
+// Obtener el año actual //  // Cada una de estos métodos en este archivo (index.pug), son middlewares. A diferencia del resto, si éste no lo creo la aplicación funciona bien igual, sólo que en el footer tendría que hardcodear el año. Por lo tanto, de esta forma obtengo el año actual en el que se hace la petición a través de este middleware y ya nunca tendría que hardcodear el año actual a medida que pasen los años. // 
+app.use( (req, res, next) => {
+    const year = new Date();
+    res.locals.anioActual = year.getFullYear();
+    return next();  // El return está demás pero a veces el next queda trabado y de esta forma no se traba. //
+} )
+
 // Definir la carpeta pública //
 app.use(express.static("public"));
 
