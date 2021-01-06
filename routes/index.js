@@ -8,10 +8,7 @@ router.get("/", (req, res) => {
 
 router.get("/nosotros", (req, res) => {
     
-    const viajes = "Viaje a Argentina";
-    res.render("nosotros", {
-          textoViajes: viajes // Esta línea es un nombreDeVariableAEnviarALaVista: nombreDeLaVariableQueTieneElContenidoActualmente. Si el nombre de la clave debe ser igual al nombre de la variable con el valor, entonces en esta línea sólo pondriamos "viajes". //
-    });
+    res.render("nosotros");
 });
 
 export default router;
