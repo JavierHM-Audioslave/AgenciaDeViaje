@@ -5,7 +5,7 @@ const db = new Sequelize("agenciaviajes", "Javier", "holaquetal", {
     port: "3306",
     dialect: "mysql",
     define: {
-        timestamp: false
+        timestamps: false
     },
     pool: {
         max: 5,
