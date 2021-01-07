@@ -4,3 +4,11 @@ export const paginaInicio = (req, res) => {
     });
 };
 
+
+export const paginaNosotros = (req, res) => {
+    
+    res.render("nosotros", {
+        pagina: "Nosotros"
+    });
+};
+

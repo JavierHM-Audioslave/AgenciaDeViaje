@@ -1,16 +1,11 @@
 import express, { Router } from "express";
-import { paginaInicio } from '../controllers/paginasController.js';
+import { paginaInicio, paginaNosotros } from '../controllers/paginasController.js';
 
 const router = express.Router();
 
 router.get("/", paginaInicio);
 
-router.get("/nosotros", (req, res) => {
-    
-    res.render("nosotros", {
-        pagina: "Nosotros"
-    });
-});
+router.get("/nosotros", paginaNosotros);
 
 router.get("/viajes", (req, res) => {
     
