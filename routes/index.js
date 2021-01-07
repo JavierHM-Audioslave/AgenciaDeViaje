@@ -1,12 +1,9 @@
 import express, { Router } from "express";
+import { paginaInicio } from '../controllers/paginasController.js';
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.render("inicio", {
-        pagina: "Inicio"
-    });
-});
+router.get("/", paginaInicio);
 
 router.get("/nosotros", (req, res) => {
     
