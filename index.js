@@ -25,6 +25,9 @@ app.use( (req, res, next) => {
     return next();  // El return está demás pero a veces el next queda trabado y de esta forma no se traba. //
 } )
 
+// Agregar body parser para leer los datos del formulario //
+app.use(express.urlencoded({extended: true}));  // Esta línea sirve para poder acceder al objeto "body" que está dentro del objeto "req" en los controladores //
+
 // Definir la carpeta pública //
 app.use(express.static("public"));
 app.use('/viajes', express.static('public'));   // Esta línea es indispensable para poder acceder a los recursos de la carpeta 'public' desde direcciones donde el primer nivel sea 'viajes' y el segundo sea cualquier cosa. O sea, si no agrego esta línea, las vistas de routes 'localhost:4000/viajes/cualquierCosa' no van a ´poder ser renderizadas con las imágenes y los estilos.
