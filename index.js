@@ -27,6 +27,7 @@ app.use( (req, res, next) => {
 
 // Definir la carpeta pública //
 app.use(express.static("public"));
+app.use('/viajes', express.static('public'));   // Esta línea es indispensable para poder acceder a los recursos de la carpeta 'public' desde direcciones donde el primer nivel sea 'viajes' y el segundo sea cualquier cosa. O sea, si no agrego esta línea, las vistas de routes 'localhost:4000/viajes/cualquierCosa' no van a ´poder ser renderizadas con las imágenes y los estilos.
 
 // Agregar router //
 app.use("/", router);
