@@ -5,13 +5,13 @@ export const guardarTestimonial = (req, res) => {
     const errores = [];
 
     if( nombre.trim() === "" ) {
-        errores.push({mensaje: "No se ha ingresado el nombre"});
+        errores.push("No se ha ingresado el nombre");
     }
     if( correo.trim() === "" ) {
-        errores.push({mensaje: "No se ha ingresado el correo"})
+        errores.push("No se ha ingresado el correo")
     }
     if( mensaje.trim() === "" ) {
-        errores.push({mensaje: "No se ha ingresado el mensaje"})
+        errores.push("No se ha ingresado el mensaje")
     }
 
     if( errores.length > 0 ) {
@@ -24,6 +24,9 @@ export const guardarTestimonial = (req, res) => {
         })
     } else {
         // HACER MAÑANA: el bloque 'else' debe guardar en la base de datos y ver qué vista mostrar porque la que muestra ahora la puse sólo para que devuelva algo //
+
+
+
         res.render("testimoniales", {
             pagina: "TESTIMONIO INGRESADO CORRECTAMENTE"
         })
