@@ -1,4 +1,6 @@
-export const guardarTestimonial = (req, res) => {
+import Testimonial from "../models/Testimoniales.js"
+
+export const guardarTestimonial = async (req, res) => {
 
     const {nombre, correo, mensaje} = req.body;
     // console.log(nombre + "-" + "correo" + "-" + mensaje);
@@ -19,16 +21,20 @@ export const guardarTestimonial = (req, res) => {
             pagina: "Testimoniales",
             errores,
             nombre,
-            correo,
-            mensaje
+            correo
         })
     } else {
         // HACER MAÑANA: el bloque 'else' debe guardar en la base de datos y ver qué vista mostrar porque la que muestra ahora la puse sólo para que devuelva algo //
+        try{
+            await Testimonial.create({
+                nombre,
+                correo,
+                mensaje
+            });
 
-
-
-        res.render("testimoniales", {
-            pagina: "TESTIMONIO INGRESADO CORRECTAMENTE"
-        })
+            res.redirect("testimoniales");
+        } catch(error) {
+            console.log(error);
+        }
     }
 }
