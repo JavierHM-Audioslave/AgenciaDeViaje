@@ -17,11 +17,16 @@ export const guardarTestimonial = async (req, res) => {
     }
 
     if( errores.length > 0 ) {
+
+        const testimoniales = await Testimonial.findAll();
+
         res.render("testimoniales", {
             pagina: "Testimoniales",
             errores,
             nombre,
-            correo
+            correo,
+            mensaje,
+            testimoniales
         })
     } else {
         // HACER MAÑANA: el bloque 'else' debe guardar en la base de datos y ver qué vista mostrar porque la que muestra ahora la puse sólo para que devuelva algo //
@@ -29,7 +34,8 @@ export const guardarTestimonial = async (req, res) => {
             await Testimonial.create({
                 nombre,
                 correo,
-                mensaje
+                mensaje,
+                
             });
 
             res.redirect("testimoniales");
