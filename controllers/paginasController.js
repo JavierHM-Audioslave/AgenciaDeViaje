@@ -4,19 +4,23 @@ import Testimonial from "../models/Testimoniales.js"
 
 export const paginaInicio = async (req, res) => {
 
-    //Consultar 3 viajes del modelo Viaje
+    //Consultar 3 viajes del modelo Viaje y 3 testimonios del modelo Testimonial
+    const promisesDeConsultasADB = [];
+    promisesDeConsultasADB.push(Viaje.findAll( {limit:3} ));
+    promisesDeConsultasADB.push(Testimonial.findAll( {limit:3} ));
+
     try{
-        const viajes = await Viaje.findAll( {limit:3} );
+        const resultadosDeConsultasABD = await Promise.all( promisesDeConsultasADB );
+
         res.render("inicio", {
             pagina: "Inicio",
             clase: "home",
-            viajes
+            viajes : resultadosDeConsultasABD[0],
+            testimoniales : resultadosDeConsultasABD[1]
         });
     }catch(error){
         console.log(error);
-    }
-
-    
+    }    
 };
 
 
