@@ -6,14 +6,7 @@ block contenido
 
         blockquote.text-center Lee sobre nuestros clientes y experiencias
 
-        .row.testimoniales
-            if(testimoniales.length > 0)
-                each testimonio in testimoniales
-                    .col-md-6.col-lg-4.mb-4
-                        .card-body
-                            blockquote.blockquote
-                            p.mb-0 #{testimonio.mensaje}
-                            footer.blockquote-footer #{testimonio.nombre}
+        include ./layout/bloque_testimoniales
  
 
 
