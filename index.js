@@ -2,6 +2,10 @@ import express from 'express';
 import router from "./routes/index.js"
 import db from "./config/db.js"
 
+import dotenv from "dotenv"
+dotenv.config({ path: 'variables.env' })
+
+
 const app = express();
 
 // Conectar a la base de datos //
@@ -9,8 +13,6 @@ db.authenticate()
     .then( () => console.log("Base de datos conectada") )
     .catch( error => console.log(error) );
 
-// Definición de puerto //
-const port = process.env.PORT || 4000;
 
 // Habilitar pug //
 app.set("view engine", "pug");
@@ -35,4 +37,7 @@ app.use('/viajes', express.static('public'));   // Esta línea es indispensable 
 // Agregar router //
 app.use("/", router);
 
-app.listen(port, () => console.log(`El servidor está funcionando en el puerto ${port}`) );
+
+const host = process.env.HOST || '0.0.0.0'; // Si la variable process.env.HOST no existe (ésto se da en el entorno de desarrollo que en este caso va a ser HEROKU), se carga el '0.0.0.0' y, al cargarse este valor, HEROKU sabe que el valor que tiene que poner en esta variable no es '0.0.0.0' sino un valor de host que el propio HEROKU lo asignará automáticamente. //
+const port = process.env.PORT || 4000;
+app.listen(port, host, () => console.log(`El servidor está funcionando en el puerto ${port}`) );    // El mensaje que se muestra en la callback se escribe en la consola sólo en caso de que la conexión a ese host en ese puerto, haya sido exitosa. //
